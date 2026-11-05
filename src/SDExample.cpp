@@ -18,10 +18,9 @@
   This example code is in the public domain.
 
 */
-#include <SD.h>
 
-const int chipSelect = 10;
-File myFile;
+
+
 
 void setup() {
   // Open serial communications and wait for port to open:

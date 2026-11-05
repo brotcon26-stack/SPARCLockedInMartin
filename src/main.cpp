@@ -19,6 +19,7 @@
 #include <SPI.h>
 #include <Adafruit_Sensor.h>
 #include "Adafruit_BMP3XX.h"
+#include <SD.h>
 
 #define BMP_SCK 13
 #define BMP_MISO 12
@@ -28,6 +29,11 @@
 #define SEALEVELPRESSURE_HPA (1013.25)
 
 Adafruit_BMP3XX bmp;
+
+//SD stuff from example script
+const int chipSelect = 10;
+File myFile;
+
 
 void setup() {
   Serial.begin(9600);
@@ -46,24 +52,45 @@ void setup() {
   bmp.setPressureOversampling(BMP3_OVERSAMPLING_4X);
   bmp.setIIRFilterCoeff(BMP3_IIR_FILTER_COEFF_3);
   bmp.setOutputDataRate(BMP3_ODR_50_HZ);
+
+  //End of altimeter initialization
+  Serial.println("Altimeter initialized");
+
+
+
 }
 
+//initialize variables
+double temperature, pressure, altitude;
+int time;
+
 void loop() {
+  
+  int time = millis();
   if (! bmp.performReading()) {
     Serial.println("Failed to perform reading :(");
     return;
   }
   Serial.print("Temperature = ");
-  Serial.print(bmp.temperature);
+  temperature = bmp.readTemperature();
+  Serial.print(temperature);
   Serial.println(" *C");
 
   Serial.print("Pressure = ");
-  Serial.print(bmp.pressure / 100.0);
+  pressure = bmp.pressure / 100.0;
+  Serial.print(pressure);
   Serial.println(" hPa");
 
   Serial.print("Approx. Altitude = ");
-  Serial.print(bmp.readAltitude(SEALEVELPRESSURE_HPA));
+  altitude = bmp.readAltitude(SEALEVELPRESSURE_HPA);
+  Serial.print(altitude);
   Serial.println(" m");
+
+  Serial.println();
+  Serial.println();
+
+  Serial.print(time+','+altitude);
+
 
   Serial.println();
   delay(2000);
