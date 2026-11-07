@@ -31,7 +31,7 @@
 Adafruit_BMP3XX bmp;
 
 //SD stuff from example script
-const int chipSelect = 10; //This conflicts so needs to change
+const int chipSelect = 9; //This conflicts so needs to change
 File myFile;
 
 //initialize variables
@@ -41,7 +41,7 @@ int time;
 
 void setup() {
   Serial.begin(9600);
-  while (!Serial); //maybe remove this?
+  while (!Serial);
   Serial.println("Adafruit BMP388 / BMP390 test");
 
   if (!bmp.begin_I2C()) {   // hardware I2C mode, can pass in address & alt Wire
@@ -124,5 +124,5 @@ void loop() {
 
 
   Serial.println();
-  delay(2000);
+  delay(100);
 }
