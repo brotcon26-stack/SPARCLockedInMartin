@@ -48,7 +48,8 @@ void setup() {
   if (!bmp.begin_I2C()) {   // hardware I2C mode, can pass in address & alt Wire
   //if (! bmp.begin_SPI(BMP_CS)) {  // hardware SPI mode  
   //if (! bmp.begin_SPI(BMP_CS, BMP_SCK, BMP_MISO, BMP_MOSI)) {  // software SPI mode
-    Serial.println("Could not find a valid BMP3 sensor, check wiring!");
+    Serial.println("aaaaabbbbbb");
+    
     while (1);
   }
   Serial.println("aaaaa");
@@ -114,7 +115,7 @@ void loop() {
   // if the file opened okay, write to it:
   if (myFile) {
     Serial.print("Writing to datalog...");
-    myFile.println(time+' , '+altitude);
+    //myFile.println(time+' , '+altitude);
     // close the file:
     myFile.close();
     Serial.println("done.");
