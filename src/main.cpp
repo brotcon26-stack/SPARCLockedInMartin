@@ -31,26 +31,27 @@
 Adafruit_BMP3XX bmp;
 
 //SD stuff from example script
-const int chipSelect = 9; //This conflicts so needs to change
+const int chipSelect = 9;
 File myFile;
 
 //initialize variables
 double temperature, pressure, altitude;
-int time;
+long int time;
 
 
 void setup() {
   Serial.begin(9600);
   while (!Serial);
+  Serial.println("why");
   Serial.println("Adafruit BMP388 / BMP390 test");
-
+  Serial.println("why not");
   if (!bmp.begin_I2C()) {   // hardware I2C mode, can pass in address & alt Wire
   //if (! bmp.begin_SPI(BMP_CS)) {  // hardware SPI mode  
   //if (! bmp.begin_SPI(BMP_CS, BMP_SCK, BMP_MISO, BMP_MOSI)) {  // software SPI mode
     Serial.println("Could not find a valid BMP3 sensor, check wiring!");
     while (1);
   }
-
+  Serial.println("aaaaa");
   // Set up oversampling and filter initialization
   bmp.setTemperatureOversampling(BMP3_OVERSAMPLING_8X);
   bmp.setPressureOversampling(BMP3_OVERSAMPLING_4X);
@@ -83,7 +84,7 @@ void setup() {
 
 void loop() {
   
-  int time = millis();
+  time = millis();
   if (! bmp.performReading()) {
     Serial.println("Failed to perform reading :(");
     return;
