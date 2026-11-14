@@ -115,7 +115,9 @@ void loop() {
   // if the file opened okay, write to it:
   if (myFile) {
     Serial.print("Writing to datalog...");
-    //myFile.println(time+' , '+altitude);
+    myFile.print(time);
+    myFile.print(',');
+    myFile.println(altitude);
     // close the file:
     myFile.close();
     Serial.println("done.");
