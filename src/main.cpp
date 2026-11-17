@@ -31,7 +31,7 @@
 Adafruit_BMP3XX bmp;
 
 //SD stuff from example script
-const int chipSelect = 9;
+const int chipSelect = 10;
 File myFile;
 
 //initialize variables
