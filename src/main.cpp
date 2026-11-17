@@ -42,9 +42,9 @@ long int time;
 void setup() {
   Serial.begin(9600);
   while (!Serial);
-  Serial.println("why");
+  //Serial.println("why");
   Serial.println("Adafruit BMP388 / BMP390 test");
-  Serial.println("why not");
+  //Serial.println("why not");
   if (!bmp.begin_I2C()) {   // hardware I2C mode, can pass in address & alt Wire
   //if (! bmp.begin_SPI(BMP_CS)) {  // hardware SPI mode  
   //if (! bmp.begin_SPI(BMP_CS, BMP_SCK, BMP_MISO, BMP_MOSI)) {  // software SPI mode
@@ -52,7 +52,7 @@ void setup() {
     
     while (1);
   }
-  Serial.println("aaaaa");
+  //Serial.println("aaaaa");
   // Set up oversampling and filter initialization
   bmp.setTemperatureOversampling(BMP3_OVERSAMPLING_8X);
   bmp.setPressureOversampling(BMP3_OVERSAMPLING_4X);
@@ -63,19 +63,19 @@ void setup() {
   Serial.println("Altimeter initialized");
 
 
-  Serial.print("Initializing SD card...");
+  //Serial.print("Initializing SD card...");
 
    if (!SD.begin(chipSelect)) {
     Serial.println("initialization failed. Things to check:");
-    Serial.println("1. is a card inserted?");
-    Serial.println("2. is your wiring correct?");
-    Serial.println("3. did you change the chipSelect pin to match your shield or module?");
-    Serial.println("Note: press reset button on the board and reopen this Serial Monitor after fixing your issue!");
+    //Serial.println("1. is a card inserted?");
+    //Serial.println("2. is your wiring correct?");
+    //Serial.println("3. did you change the chipSelect pin to match your shield or module?");
+    //Serial.println("Note: press reset button on the board and reopen this Serial Monitor after fixing your issue!");
     while (true);
   }
 
 
-  Serial.println("initialization done.");
+  //Serial.println("initialization done.");
 
 
 
@@ -90,12 +90,12 @@ void loop() {
     Serial.println("Failed to perform reading :(");
     return;
   }
-  Serial.print("Temperature = ");
+  //Serial.print("Temperature = ");
   temperature = bmp.readTemperature();
   Serial.print(temperature);
   Serial.println(" *C");
 
-  Serial.print("Pressure = ");
+  //Serial.print("Pressure = ");
   pressure = bmp.pressure / 100.0;
   Serial.print(pressure);
   Serial.println(" hPa");
